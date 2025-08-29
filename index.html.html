@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Mock Test Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #2c6fb7;
+            --accent: #ff7e30;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
+            color: #333;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .test-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .test-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .writing-area {
+            min-height: 300px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            padding: 15px;
+        }
+        
+        .results-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .evaluation-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            background-color: var(--accent);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>
+                <span class="logo-text">IELTS Master</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tests">Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">IELTS Mock Test Platform</h1>
+            <p class="lead mb-4">Practice with customized tests and get AI-powered feedback on your writing</p>
+            <a href="#tests" class="btn btn-primary btn-lg">Start Practicing</a>
+        </div>
+    </section>
+
+    <!-- Test Selection -->
+    <section id="tests" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Choose Your Test Pattern</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card test-card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-graduation-cap me-2"></i>Academic</h3>
+                            <p class="card-text">Ideal for students planning to study at undergraduate or postgraduate levels.</p>
+                            <div class="mb-3">
+                                <h5>Writing Tasks:</h5>
+                                <ul>
+                                    <li>Task 1: Describe visual information</li>
+                                    <li>Task 2: Essay writing</li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testOptionsModal" data-test-type="academic">Select Academic</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card test-card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="fas fa-briefcase me-2"></i>General Training</h3>
+                            <p class="card-text">For those migrating to English-speaking countries or for work experience.</p>
+                            <div class="mb-3">
+                                <h5>Writing Tasks:</h5>
+                                <ul>
+                                    <li>Task 1: Letter writing</li>
+                                    <li>Task 2: Essay writing</li>
+                                </ul>
+                            </div>
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testOptionsModal" data-test-type="general">Select General</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Interface (Hidden by default) -->
+    <section id="testInterface" class="py-5" style="display: none;">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>IELTS Writing Test</h2>
+                <div class="timer" id="timer">60:00</div>
+            </div>
+            
+            <div class="test-container">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>You have 60 minutes to complete both tasks. It's recommended to spend about 20 minutes on Task 1 and 40 minutes on Task 2.
+                </div>
+                
+                <h4 class="mt-4">Task 1</h4>
+                <p id="task1Prompt">The graph below shows the proportion of the population aged 65 and over between 1940 and 2040 in three different countries. Summarize the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                
+                <div class="mb-4">
+                    <img id="task1Image" src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="img-fluid rounded" alt="IELTS Task 1 Visual" style="max-height: 300px;">
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="task1Answer" class="form-label">Your Response (Minimum 150 words)</label>
+                    <textarea class="form-control writing-area" id="task1Answer" rows="6" placeholder="Write your answer here..."></textarea>
+                    <div class="form-text">Word count: <span id="task1WordCount">0</span></div>
+                </div>
+                
+                <h4 class="mt-5">Task 2</h4>
+                <p id="task2Prompt">Some people believe that it is best to accept a bad situation, such as an unsatisfactory job or shortage of money. Others argue that it is better to try and improve such situations. Discuss both these views and give your own opinion.</p>
+                
+                <div class="form-group mb-4">
+                    <label for="task2Answer" class="form-label">Your Response (Minimum 250 words)</label>
+                    <textarea class="form-control writing-area" id="task2Answer" rows="8" placeholder="Write your essay here..."></textarea>
+                    <div class="form-text">Word count: <span id="task2WordCount">0</span></div>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary btn-lg" id="submitTest">Submit Answers</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (Hidden by default) -->
+    <section id="resultsSection" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="text-center mb-5">Your Test Results</h2>
+            
+            <div class="row mb-5">
+                <div class="col-md-6 mb-4">
+                    <div class="results-card card test-card">
+                        <h3>Task 1 Score</h3>
+                        <div class="score-circle" id="task1Score">6.5</div>
+                        <p class="text-muted">Based on Task Achievement, Coherence, Lexical Resource, and Grammatical Range</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="results-card card test-card">
+                        <h3>Task 2 Score</h3>
+                        <div class="score-circle" id="task2Score">7.0</div>
+                        <p class="text-muted">Based on Task Response, Coherence, Lexical Resource, and Grammatical Range</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="evaluation-section">
+                <h3 class="mb-4">AI Evaluation</h3>
+                
+                <h5>Task 1 Feedback</h5>
+                <div id="task1Feedback">
+                    <p>Your summary effectively identifies the main trends in the data. You've made appropriate comparisons between the three countries. However, try to include more specific data points to support your statements.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Task Achievement</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Coherence and Cohesion</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Lexical Resource</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Grammatical Range</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 class="mt-4">Task 2 Feedback</h5>
+                <div id="task2Feedback">
+                    <p>You've done a good job discussing both sides of the argument and providing your opinion. Your essay is well-structured with clear paragraphs. To improve, try to use more varied sentence structures and topic-specific vocabulary.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Task Response</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Coherence and Cohesion</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Lexical Resource</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Grammatical Range</label>
+                        <div class="progress mb-2">
+                            <div class="progress-bar" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2 col-md-6 mx-auto mt-4">
+                    <button class="btn btn-primary" id="retakeTest">Retake Test</button>
+                    <button class="btn btn-outline-primary" id="tryDifferent">Try Different Test Pattern</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Options Modal -->
+    <div class="modal fade" id="testOptionsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Test Options</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Select Question Pattern</label>
+                        <select class="form-select" id="questionPattern">
+                            <option value="fullTest">Full Test (Task 1 + Task 2)</option>
+                            <option value="onlyTask1">Only Task 1</option>
+                            <option value="onlyTask2">Only Task 2</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Time Limit</label>
+                        <select class="form-select" id="timeLimit">
+                            <option value="60">60 minutes (Recommended)</option>
+                            <option value="45">45 minutes</option>
+                            <option value="75">75 minutes</option>
+                            <option value="90">90 minutes</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Difficulty Level</label>
+                        <select class="form-select" id="difficultyLevel">
+                            <option value="medium">Medium</option>
+                            <option value="easy">Easy</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="startTest">Start Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">About This Platform</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>How It Works</h4>
+                    <p>This IELTS Mock Test Platform helps students prepare for the IELTS exam by providing:</p>
+                    <ul>
+                        <li>Customizable test patterns</li>
+                        <li>Realistic test environment with timer</li>
+                        <li>AI-powered writing evaluation</li>
+                        <li>Detailed feedback and scoring</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Getting Started</h4>
+                    <ol>
+                        <li>Select your test type (Academic or General Training)</li>
+                        <li>Choose your preferred question pattern</li>
+                        <li>Complete the writing tasks within the time limit</li>
+                        <li>Submit your answers for evaluation</li>
+                        <li>Review your scores and feedback</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>IELTS Master</h5>
+                    <p>An online platform for IELTS test preparation with AI-powered evaluation.</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#tests" class="text-white">Tests</a></li>
+                        <li><a href="#about" class="text-white">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> support@ieltsmaster.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Follow Us</h5>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="text-center mb-0">© 2023 IELTS Master. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Word count functionality
+            const task1Answer = document.getElementById('task1Answer');
+            const task2Answer = document.getElementById('task2Answer');
+            const task1WordCount = document.getElementById('task1WordCount');
+            const task2WordCount = document.getElementById('task2WordCount');
+            
+            function countWords(text) {
+                return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            }
+            
+            task1Answer.addEventListener('input', function() {
+                task1WordCount.textContent = countWords(this.value);
+            });
+            
+            task2Answer.addEventListener('input', function() {
+                task2WordCount.textContent = countWords(this.value);
+            });
+            
+            // Test start functionality
+            const startTestBtn = document.getElementById('startTest');
+            const testInterface = document.getElementById('testInterface');
+            const testsSection = document.getElementById('tests');
+            
+            startTestBtn.addEventListener('click', function() {
+                const testOptionsModal = document.getElementById('testOptionsModal');
+                const bootstrapModal = bootstrap.Modal.getInstance(testOptionsModal);
+                bootstrapModal.hide();
+                
+                testsSection.style.display = 'none';
+                testInterface.style.display = 'block';
+                
+                // Start timer
+                startTimer();
+            });
+            
+            // Timer functionality
+            let timerInterval;
+            function startTimer() {
+                const timerElement = document.getElementById('timer');
+                const timeLimit = parseInt(document.getElementById('timeLimit').value);
+                let timeLeft = timeLimit * 60; // Convert to seconds
+                
+                clearInterval(timerInterval);
+                
+                timerInterval = setInterval(function() {
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitTest();
+                        return;
+                    }
+                    
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    
+                    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    timeLeft--;
+                }, 1000);
+            }
+            
+            // Test submission
+            const submitTestBtn = document.getElementById('submitTest');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            function submitTest() {
+                clearInterval(timerInterval);
+                testInterface.style.display = 'none';
+                resultsSection.style.display = 'block';
+                
+                // Simulate AI evaluation with random scores
+                const task1Score = (Math.random() * 3 + 5).toFixed(1);
+                const task2Score = (Math.random() * 3 + 5).toFixed(1);
+                
+                document.getElementById('task1Score').textContent = task1Score;
+                document.getElementById('task2Score').textContent = task2Score;
+            }
+            
+            submitTestBtn.addEventListener('click', submitTest);
+            
+            // Retake test functionality
+            document.getElementById('retakeTest').addEventListener('click', function() {
+                resultsSection.style.display = 'none';
+                testInterface.style.display = 'block';
+                
+                // Reset text areas
+                task1Answer.value = '';
+                task2Answer.value = '';
+                task1WordCount.textContent = '0';
+                task2WordCount.textContent = '0';
+                
+                startTimer();
+            });
+            
+            // Try different test functionality
+            document.getElementById('tryDifferent').addEventListener('click', function() {
+                resultsSection.style.display = 'none';
+                testsSection.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
